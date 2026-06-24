@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anish Ghimire — Data Analyst</title>
+<meta name="description" content="Anish Ghimire — Microsoft PL-300 certified Data Analyst based in Canberra. Power BI, SQL, Python. Turning messy data into clear decisions." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Anish Ghimire — Data Analyst" />
+<meta property="og:description" content="Microsoft PL-300 certified Data Analyst at the ACT Government, Canberra, specialising in Power BI, SQL, and data-driven decision making." />
+<meta property="og:image" content="assets/img/my_profile_img.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b1120;
+    --bg-soft: #0f1729;
+    --card: #131c30;
+    --card-hover: #182238;
+    --border: #1f2b45;
+    --text: #e7ecf5;
+    --muted: #93a1bd;
+    --accent: #2dd4bf;
+    --accent-2: #38bdf8;
+    --accent-glow: rgba(45, 212, 191, 0.35);
+    --radius: 16px;
+    --maxw: 1120px;
+    --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.15; letter-spacing: -0.02em; }
+  a { color: inherit; text-decoration: none; }
+  section { padding: 110px 24px; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; }
+
+  .accent { color: var(--accent); }
+  .gradient-text {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(11, 17, 32, 0.55);
+    border-bottom: 1px solid transparent;
+    transition: background .3s, border-color .3s, padding .3s;
+  }
+  nav.scrolled { background: rgba(11, 17, 32, 0.85); border-color: var(--border); }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; }
+  .logo { font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 1.15rem; }
+  .logo .dot { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; list-style: none; }
+  .nav-links a { color: var(--muted); font-size: .92rem; font-weight: 500; position: relative; transition: color .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a.active::after {
+    content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+  .nav-cta {
+    border: 1px solid var(--accent); color: var(--accent); padding: 8px 18px; border-radius: 999px;
+    font-size: .88rem; font-weight: 600; transition: all .25s;
+  }
+  .nav-cta:hover { background: var(--accent); color: #04201c; box-shadow: 0 0 24px var(--accent-glow); }
+  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: 0; }
+  .burger span { width: 24px; height: 2px; background: var(--text); transition: .3s; }
+
+  /* ---------- HERO ---------- */
+  .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding-top: 90px; }
+  .hero-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; animation: float 14s ease-in-out infinite; }
+  .blob.a { width: 480px; height: 480px; background: var(--accent); top: -120px; right: -80px; }
+  .blob.b { width: 420px; height: 420px; background: var(--accent-2); bottom: -140px; left: -100px; animation-delay: -6s; }
+  .grid-overlay {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 54px 54px; opacity: .15;
+    mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+  }
+  @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px, -30px); } }
+
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: center; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; font-weight: 600;
+    color: var(--accent); background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.25);
+    padding: 7px 16px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .pill .ping { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent-glow); animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 var(--accent-glow);} 70% { box-shadow: 0 0 0 10px rgba(45,212,191,0);} 100% { box-shadow:0 0 0 0 rgba(45,212,191,0);} }
+  .hero h1 { font-size: clamp(2.4rem, 5.2vw, 4rem); font-weight: 800; margin-bottom: 22px; }
+  .hero .lead { color: var(--muted); font-size: 1.12rem; max-width: 540px; margin-bottom: 34px; }
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    padding: 13px 26px; border-radius: 999px; font-weight: 600; font-size: .95rem; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 9px; transition: all .25s; border: 1px solid transparent;
+  }
+  .btn-primary { background: linear-gradient(120deg, var(--accent), var(--accent-2)); color: #04201c; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -10px var(--accent-glow); }
+  .btn-ghost { border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 28px; box-shadow: var(--shadow);
+    position: relative;
+  }
+  .avatar {
+    width: 92px; height: 92px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    padding: 3px; margin-bottom: 18px;
+  }
+  .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+  .hero-card h3 { font-size: 1.3rem; }
+  .hero-card .role { color: var(--accent); font-size: .92rem; font-weight: 600; margin-bottom: 16px; }
+  .meta-line { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: .92rem; margin: 9px 0; }
+  .meta-line svg { flex-shrink: 0; }
+  .meta-line a { color: var(--muted); transition: color .2s; }
+  .meta-line a:hover { color: var(--accent); }
+  .tech-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+  .chip { font-size: .78rem; color: var(--muted); background: var(--bg-soft); border: 1px solid var(--border); padding: 5px 11px; border-radius: 8px; }
+
+  /* ---------- STATS BAND ---------- */
+  .stats { padding: 0 24px; margin-top: -40px; position: relative; z-index: 5; }
+  .stats-inner {
+    max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  }
+  .stat { padding: 30px 22px; text-align: center; border-right: 1px solid var(--border); }
+  .stat:last-child { border-right: 0; }
+  .stat .num { font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 2.1rem; }
+  .stat .label { color: var(--muted); font-size: .86rem; margin-top: 4px; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .eyebrow { color: var(--accent); font-weight: 600; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+  .sec-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; margin: 10px 0 16px; }
+  .sec-sub { color: var(--muted); max-width: 620px; }
+  .sec-head { margin-bottom: 54px; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+  .about-grid p { color: var(--muted); margin-bottom: 18px; }
+  .about-grid strong { color: var(--text); font-weight: 600; }
+  .highlight-list { list-style: none; display: grid; gap: 14px; }
+  .highlight-list li { display: flex; gap: 13px; align-items: flex-start; }
+  .check { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; background: rgba(45,212,191,.12); display: flex; align-items: center; justify-content: center; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all .3s; }
+  .skill-card:hover { transform: translateY(-5px); border-color: rgba(45,212,191,.4); background: var(--card-hover); }
+  .skill-icon { width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(135deg, rgba(45,212,191,.18), rgba(56,189,248,.18)); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .skill-card h3 { font-size: 1.12rem; margin-bottom: 14px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tags span { font-size: .82rem; color: var(--muted); background: var(--bg-soft); border: 1px solid var(--border); padding: 6px 12px; border-radius: 999px; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline { position: relative; max-width: 780px; margin: 0 auto; padding-left: 34px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), var(--accent-2), transparent); }
+  .tl-item { position: relative; padding-bottom: 42px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before { content: ''; position: absolute; left: -34px; top: 5px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+  .tl-date { font-size: .82rem; color: var(--accent); font-weight: 600; }
+  .tl-item h3 { font-size: 1.18rem; margin: 5px 0 2px; }
+  .tl-org { color: var(--muted); font-size: .95rem; margin-bottom: 12px; }
+  .tl-item ul { list-style: none; display: grid; gap: 8px; }
+  .tl-item li { color: var(--muted); font-size: .94rem; padding-left: 18px; position: relative; }
+  .tl-item li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-group { margin-bottom: 50px; }
+  .gallery-group:last-child { margin-bottom: 0; }
+  .gallery-group-head { margin-bottom: 18px; }
+  .gallery-group-head h3 { font-size: 1.05rem; color: var(--text); }
+  .gallery-group-head p { color: var(--muted); font-size: .9rem; margin-top: 4px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .gallery-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: all .3s; }
+  .gallery-card:hover { transform: translateY(-4px); border-color: rgba(45,212,191,.4); box-shadow: var(--shadow); }
+  .gallery-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .gallery-card figcaption { padding: 10px 12px; font-size: .8rem; color: var(--muted); }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .proj-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all .3s; display: flex; flex-direction: column; }
+  .proj-card:hover { transform: translateY(-6px); border-color: rgba(56,189,248,.4); box-shadow: var(--shadow); }
+  .proj-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .proj-emoji { font-size: 1.7rem; width: 52px; height: 52px; border-radius: 12px; background: var(--bg-soft); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+  .proj-card h3 { font-size: 1.15rem; margin-bottom: 9px; }
+  .proj-card p { color: var(--muted); font-size: .93rem; flex-grow: 1; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0; }
+  .proj-tags span { font-size: .76rem; color: var(--accent); background: rgba(45,212,191,.1); padding: 4px 10px; border-radius: 6px; }
+  .repo-link { color: var(--accent-2); font-weight: 600; font-size: .9rem; display: inline-flex; align-items: center; gap: 6px; transition: gap .2s; }
+  .repo-link:hover { gap: 11px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact { background: var(--bg-soft); }
+  .contact-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 50px; text-align: center; box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .contact-card::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 200px; background: var(--accent); filter: blur(100px); opacity: .18; }
+  .contact-card h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); position: relative; }
+  .contact-card p { color: var(--muted); max-width: 480px; margin: 16px auto 32px; position: relative; }
+  .contact-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ---------- FOOTER ---------- */
+  footer { padding: 36px 24px; border-top: 1px solid var(--border); }
+  .footer-inner { max-width: var(--maxw); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: .88rem; }
+  .socials { display: flex; gap: 16px; }
+  .socials a { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all .25s; }
+  .socials a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+
+  /* ---------- REVEAL ANIM ---------- */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .hero-grid, .about-grid { grid-template-columns: 1fr; }
+    .hero-card { max-width: 420px; }
+    .skills-grid, .proj-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: 0; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .nav-links, .nav-cta { display: none; }
+    .burger { display: flex; }
+    .nav-links.open { display: flex; position: absolute; top: 64px; right: 16px; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 26px; gap: 18px; }
+    section { padding: 80px 20px; }
+  }
+  @media (max-width: 480px) {
+    .stats-inner { grid-template-columns: 1fr; }
+    .stat { border-right: 0; border-bottom: 1px solid var(--border); }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">Anish<span class="dot">.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="blob a"></div>
+    <div class="blob b"></div>
+    <div class="grid-overlay"></div>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="pill"><span class="ping"></span> Available for data roles · Canberra, AU</span>
+      <h1>I turn messy data into <span class="gradient-text">decisions people trust.</span></h1>
+      <p class="lead">Microsoft PL-300 certified Data Analyst building Power BI dashboards, validating pipelines with SQL, and translating numbers into stories non-technical teams can act on.</p>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-primary">View my work →</a>
+        <a href="#contact" class="btn btn-ghost">Contact me</a>
+        <a href="assets/resume_anishGhimire_06242026.pdf" download class="btn btn-ghost">↓ Resume</a>
+      </div>
+    </div>
+    <div class="hero-card reveal in">
+      <div class="avatar"><img src="assets/img/my_profile_img.jpg" alt="Anish Ghimire"></div>
+      <h3>Anish Ghimire</h3>
+      <div class="role">Data Analyst · ACT Government</div>
+      <div class="meta-line">
+        <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Canberra, Australia
+      </div>
+      <div class="meta-line">
+        <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        Microsoft PL-300 Certified
+      </div>
+      <div class="meta-line">
+        <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        MSc Data Science · Univ. of Canberra
+      </div>
+      <div class="meta-line">
+        <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        <a href="mailto:shitalghimire@gmail.com">shitalghimire@gmail.com</a>
+      </div>
+      <div class="meta-line">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg>
+        <a href="https://www.linkedin.com/in/shitalghimire/" target="_blank" rel="noopener">linkedin.com/in/shitalghimire</a>
+      </div>
+      <div class="tech-chips">
+        <span class="chip">Power BI</span><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">R</span><span class="chip">PostgreSQL</span><span class="chip">Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner reveal">
+    <div class="stat"><div class="num gradient-text">25%</div><div class="label">Sales lift from dashboards</div></div>
+    <div class="stat"><div class="num gradient-text">20%</div><div class="label">↑ youth participation driven</div></div>
+    <div class="stat"><div class="num gradient-text">5+</div><div class="label">Years across data &amp; field roles</div></div>
+    <div class="stat"><div class="num gradient-text">PL-300</div><div class="label">Microsoft certified analyst</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="sec-title">Data with a human translation layer</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I'm a Microsoft certified (PL-300) Data Analyst currently working within the <strong>ACT Government</strong>, with hands-on experience developing and maintaining <strong>Power BI dashboards</strong>, reports and visualisations, and validating data using <strong>SQL</strong> to support high data-quality standards.</p>
+        <p>I'm skilled at interpreting data to identify trends and issues, presenting insights in clear and accessible ways for non-technical audiences, and producing reporting that informs operational and strategic decision-making. I collaborate closely with stakeholders to clarify data requirements, work within Agile delivery, and handle sensitive information with care and discretion.</p>
+        <p>My background spans technical and customer-facing roles in both Nepal and Australia — from leading farm mechanisation projects to government service delivery — giving me a practical, evidence-based approach to turning data into <strong>real-world outcomes.</strong></p>
+      </div>
+      <ul class="highlight-list">
+        <li><span class="check"><svg width="14" height="14" fill="none" stroke="var(--accent)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><strong>End-to-end analytics</strong> — from raw ETL in SQL Server to polished Power BI reporting.</div></li>
+        <li><span class="check"><svg width="14" height="14" fill="none" stroke="var(--accent)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><strong>Data integrity &amp; automation</strong> — building reliable, repeatable pipelines.</div></li>
+        <li><span class="check"><svg width="14" height="14" fill="none" stroke="var(--accent)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><strong>Stakeholder storytelling</strong> — turning analysis into plain-language recommendations.</div></li>
+        <li><span class="check"><svg width="14" height="14" fill="none" stroke="var(--accent)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><strong>Cross-domain experience</strong> — government, agriculture, and customer-facing roles.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background: var(--bg-soft);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Toolkit</span>
+      <h2 class="sec-title">Skills &amp; capabilities</h2>
+      <p class="sec-sub">The technical stack and professional muscles I bring to a data team.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon"><svg width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div>
+        <h3>Data &amp; Databases</h3>
+        <div class="skill-tags"><span>SQL</span><span>PostgreSQL</span><span>SQL Server</span><span>ETL</span><span>Data Modelling</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><svg width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="13" y="6" width="3" height="11"/></svg></div>
+        <h3>BI &amp; Visualisation</h3>
+        <div class="skill-tags"><span>Power BI</span><span>Advanced Excel</span><span>SAS Viya</span><span>Dashboards</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><svg width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>Programming &amp; Stats</h3>
+        <div class="skill-tags"><span>Python</span><span>R</span><span>Machine Learning</span><span>Pattern Recognition</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><svg width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3>Research &amp; Analysis</h3>
+        <div class="skill-tags"><span>Data Analysis</span><span>Report Writing</span><span>Business Intelligence</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><svg width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <h3>Leadership &amp; Delivery</h3>
+        <div class="skill-tags"><span>Project Management</span><span>Team Leadership</span><span>Stakeholder Engagement</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon"><svg width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>People &amp; Service</h3>
+        <div class="skill-tags"><span>Customer Service</span><span>Salesforce</span><span>Communication</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Journey</span>
+      <h2 class="sec-title">Experience &amp; education</h2>
+      <p class="sec-sub">From mechanisation fields in Nepal to government data desks in Canberra.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-date">May 2026 — Present</div>
+        <h3>Data Analyst (ASO5)</h3>
+        <div class="tl-org">ACT Government, CSD, Data Insights and Analytics</div>
+        <ul>
+          <li>Develop, run, and maintain data reports, analytics dashboards, and data visualisations using Power BI, Python, and SQL, supporting evidence-based decision making across the directorate.</li>
+          <li>Interpret analytical results to identify data quality issues, locate and resolve code problems, and ensure ongoing integrity of reporting outputs.</li>
+          <li>Drive improvements in data automation, process standardisation, and data integrity, contributing to a stronger data management framework.</li>
+          <li>Collaborate with key stakeholders across business units to deliver enhanced CSD reporting aligned with organisational priorities and strategy.</li>
+          <li>Work within an Agile project management framework, keeping the team and executive leadership informed of progress, risks, and delivery timelines.</li>
+          <li>Handle sensitive and complex data in accordance with privacy obligations and legislative requirements to achieve business outcomes.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Oct 2025 — May 2026</div>
+        <h3>Customer Service Officer (ASO3)</h3>
+        <div class="tl-org">ACT Government, CED, Access Canberra</div>
+        <ul>
+          <li>Navigated and maintained data across multiple digital platforms — including Salesforce, rego.act, Rego Help, SharePoint, and Q-Flow — ensuring transaction accuracy and data integrity across high-volume customer interactions.</li>
+          <li>Queried and updated customer records across integrated government databases, applying data accuracy standards in compliance with the Territory Records Act 2002 and privacy obligations.</li>
+          <li>Monitored and analysed real-time customer flow dashboards across multiple service centres to support operational decision-making, resource allocation, and queue management.</li>
+          <li>Interpreted ACT Government regulatory requirements to assess applications and deliver accurate advice across in-person, phone, and written channels.</li>
+          <li>Identified and escalated data inconsistencies within Rego Help, contributing formal feedback that led to content amendments — improving data accuracy for staff and customers.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Apr 2021 — May 2022</div>
+        <h3>Senior Mechanisation Officer</h3>
+        <div class="tl-org">Muktinath Krishi Company Limited, Kathmandu, Nepal</div>
+        <ul>
+          <li>Conducted analysis of different agriculture projects like seed processing units, drip irrigation design, greenhouse installation, and machinery distribution to support pricing strategy.</li>
+          <li>Managed 5+ projects or tasks at a given time while under pressure.</li>
+          <li>Developed Power BI and Excel based dashboards to visualise machinery sales, identifying trends in demand and seasonal patterns through pivot tables and charts, leading to a <strong style="color:var(--text)">25% sales increase</strong>.</li>
+          <li>Collaborated with government bodies to address labour shortages through mechanisation initiatives. Advocated policy changes and subsidy schemes, boosting youth participation in agriculture by <strong style="color:var(--text)">20%</strong>.</li>
+          <li>Delivered technical training and educational sessions on agricultural machinery to 100+ farmers, dealers, and field technicians, communicating technical information in plain, accessible language.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2022 — 2024</div>
+        <h3>Master of Data Science</h3>
+        <div class="tl-org">University of Canberra, ACT, Australia</div>
+        <ul>
+          <li>Data Analysis, Pattern Recognition and Machine Learning, Artificial Intelligence, Research Methodology, Database Management, Exploratory Data Analysis, Business Intelligence, Regression Modelling, Computer Vision and Image Analysis.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2015 — 2019</div>
+        <h3>Bachelor of Agriculture Engineering</h3>
+        <div class="tl-org">Tribhuvan University, Dharan, Nepal</div>
+        <ul>
+          <li>C Programming, Mathematics, Irrigation Systems, Precision Agriculture, Agribusiness Operations, Machinery Design, Project Management, Engineering Practices, Economic Analysis.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="background: var(--bg-soft);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">In the field</span>
+      <h2 class="sec-title">Experience gallery</h2>
+      <p class="sec-sub">Moments from presentations, training delivery, and projects across Canberra and Nepal.</p>
+    </div>
+
+    <div class="gallery-group reveal">
+      <div class="gallery-group-head">
+        <h3>SAS Canberra — Home Loan Origination Model</h3>
+        <p>Presented a data-driven Home Loan Origination Scorecard using SAS Viya, supporting more accurate and consistent credit risk decisions.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-card"><img src="assets/img/myexperiences/SAS1.jpg" alt="SAS presentation"><figcaption>SAS Canberra presentation</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/SAS2.jpg" alt="SAS presentation"><figcaption>SAS Canberra presentation</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/SAS3.jpg" alt="SAS presentation"><figcaption>SAS Canberra presentation</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/sas4.JPG" alt="SAS presentation"><figcaption>SAS Canberra presentation</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="gallery-group reveal">
+      <div class="gallery-group-head">
+        <h3>Muktinath Krishi Company — Mechanisation Initiatives</h3>
+        <p>Delivering training, supplier meetings, and machinery repair/maintenance sessions for farmers and agriculture resource centres.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-card"><img src="assets/img/myexperiences/mkcl1.jpg" alt="MKCL Training"><figcaption>Training Agriculture Resource Centre reps</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/mkcl2.jpg" alt="MKCL Training 2"><figcaption>Meeting with supplier from India</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/mkcl4.jpg" alt="MKCL Training 4"><figcaption>AgriMech Expo 2022</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/farmer_training1.png" alt="Farmer Training"><figcaption>Machinery repair &amp; maintenance training</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/mkcl3.jpg" alt="MKCL Training 3"><figcaption>MOU signing with Kheti</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="gallery-group reveal">
+      <div class="gallery-group-head">
+        <h3>Repair &amp; Maintenance Training — IRRI &amp; CIMMYT Nepal</h3>
+        <p>Co-facilitated hands-on training for farmers on repair and maintenance of agricultural machinery in Nepalgunj, jointly organised by IRRI and CIMMYT Nepal.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-card"><img src="assets/img/myexperiences/nepalgunj_training/1_nepalgunj_training.jpg" alt="Training Photo 1"><figcaption>Nepalgunj training</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/nepalgunj_training/2nepalgunj_training.jpg" alt="Training Photo 2"><figcaption>Nepalgunj training</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/nepalgunj_training/3_nepalgunj_training.jpg" alt="Training Photo 3"><figcaption>Nepalgunj training</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="gallery-group reveal">
+      <div class="gallery-group-head">
+        <h3>Agriculture Master Plan — Balwa Municipality</h3>
+        <p>Collaborated with local farmers and municipal officials as a freelance consultant to develop a comprehensive Agriculture Master Plan, initiated by the Government of Nepal.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-card"><img src="assets/img/myexperiences/janakpur_training/janakpurProject_1.jpg" alt="Balwa Project Photo 1"><figcaption>Balwa Agriculture Master Plan</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/janakpur_training/2_janakpur.jpg" alt="Balwa Project Photo 2"><figcaption>Balwa Agriculture Master Plan</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/janakpur_training/3_janakpur.jpg" alt="Balwa Project Photo 3"><figcaption>Balwa Agriculture Master Plan</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="gallery-group reveal">
+      <div class="gallery-group-head">
+        <h3>Undergraduate Highlights — Student Leadership (2015–2019)</h3>
+        <p>Represented NAESS at the Nepal Agritech International Expo 2017, published <em>The Agrineer</em> journal, organised AgriMech Expo 2018 as Vice President of Student Society, and visited IIT Kharagpur for academic exposure.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-card"><img src="assets/img/myexperiences/undergrad/agritech1.JPG" alt="Agritech Expo"><figcaption>Nepal Agritech International Expo 2017</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/undergrad/naess_book_publication.JPG" alt="Book Publication"><figcaption>The Agrineer journal publication</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/undergrad/agrimech2.JPG" alt="AgriMech Expo 2"><figcaption>AgriMech Expo 2018</figcaption></figure>
+        <figure class="gallery-card"><img src="assets/img/myexperiences/undergrad/iit4.jpg" alt="IIT Visit"><figcaption>IIT Kharagpur exposure visit</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Selected work</span>
+      <h2 class="sec-title">Projects</h2>
+      <p class="sec-sub">A sample of analytics and BI builds — full code and writeups on GitHub.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-emoji">🏗️</div></div>
+        <h3>Data Warehouse &amp; ETL Pipeline</h3>
+        <p>Designed and built a SQL Server data warehouse with a full ETL process — extracting, transforming and loading source data into a query-ready model.</p>
+        <div class="proj-tags"><span>SQL Server</span><span>ETL</span><span>Data Modelling</span></div>
+        <a class="repo-link" href="https://github.com/shitalgh1910/SQL-Data_warehouse-Project" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-emoji">📊</div></div>
+        <h3>Excel-Based Sales Dashboard</h3>
+        <p>An interactive sales dashboard in Excel surfacing trends, KPIs and breakdowns for fast, no-friction reporting.</p>
+        <div class="proj-tags"><span>Advanced Excel</span><span>Dashboards</span><span>KPIs</span></div>
+        <a class="repo-link" href="https://github.com/shitalgh1910/Sales_Analysis_Project" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-emoji">📈</div></div>
+        <h3>Data Professional Survey Analysis</h3>
+        <p>A Power BI report analysing a data-professional survey — exploring salaries, tools and satisfaction across the industry.</p>
+        <div class="proj-tags"><span>Power BI</span><span>DAX</span><span>Visualisation</span></div>
+        <a class="repo-link" href="https://github.com/shitalgh1910/Power-BI-Dashboard-Data-Professional-Survey-Breakdown" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-top"><div class="proj-emoji">🎬</div></div>
+        <h3>Movie Data Analysis</h3>
+        <p>An Excel-driven exploration of movie data — cleaning, correlating and visualising what drives box-office performance.</p>
+        <div class="proj-tags"><span>Excel</span><span>Data Cleaning</span><span>Correlation</span></div>
+        <a class="repo-link" href="https://github.com/shitalgh1910/Movie-Data-Analysis-with-Excel" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's build something with your data.</h2>
+      <p>Open to data analyst roles and freelance dashboard work. The fastest way to reach me is email or LinkedIn.</p>
+      <div class="contact-row">
+        <a href="mailto:shitalghimire@gmail.com" class="btn btn-primary">✉ shitalghimire@gmail.com</a>
+        <a href="https://www.linkedin.com/in/shitalghimire/" target="_blank" rel="noopener" class="btn btn-ghost">in · LinkedIn</a>
+        <a href="assets/resume_anishGhimire_06242026.pdf" download class="btn btn-ghost">↓ Download Resume</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>© <span id="year"></span> Anish Ghimire · Data Analyst, Canberra</div>
+    <div class="socials">
+      <a href="mailto:shitalghimire@gmail.com" aria-label="Email"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></a>
+      <a href="https://www.linkedin.com/in/shitalghimire/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // sticky nav style
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
+
+  // mobile menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.getAttribute('id');
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
